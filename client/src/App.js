@@ -1,23 +1,31 @@
-import './index.css';
-import Navbar from './Navbar';
-import Login from './Login';
 import React from 'react';
-import SignUp from './SignUp';
+import NavBar from './NavBar';
+import Login from './Login';
 import Activity from './Activity';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import BucketList from './BucketList';
+import SignUp from './SignUp';
+
+import { useState } from 'react';
+
+
+
+import './App.css';
+
 
 function App() {
+
+
+const [ user, setUser ] = useState('');
+
+
   return (
-    <BrowserRouter>  
-    <nav> <Navbar></Navbar> </nav>
-    <Routes>
-      <Route exact path='/' element={ <Login></Login>}></Route>
-
-      <Route path='signup' element={<SignUp></SignUp>}></Route>
-
-      <Route path='activities' element={<Activity></Activity>}></Route>
-    </Routes>
-    </BrowserRouter>
+    <div>
+      <NavBar user={user}></NavBar>
+      <Login setUser={setUser}></Login>
+      <SignUp setUser={setUser}></SignUp>
+      <Activity></Activity>
+      <BucketList></BucketList>
+    </div>
   );
 }
 
